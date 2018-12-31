@@ -8,17 +8,34 @@ namespace Common
 {
     public class Identity
     {
-        public string FullName { get; set; }
-        public int Age { get; set; }
-        public string Address { get; set; }
-        public string WorkAddress { get; set; }
+        private string fullName;
+        private int age;
+        private string address;
+        private string workAddress;
 
-        public Identity(string name, int age, string address, string workAddress)
+        public string FullName
         {
-            FullName = name;
-            Age = age;
-            Address = address;
-            WorkAddress = workAddress;
+            get { return fullName; }
+            set { fullName = value; }
         }
+
+        public int Age
+        {
+            get { return age; }
+            set { age = value; }
+        }
+
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
+        }
+
+        public string WorkAddress
+        {
+            get { return workAddress; }
+            set { workAddress = value; }
+        }
+
     }
 }
