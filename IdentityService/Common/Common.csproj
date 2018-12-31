@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Identity.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="Interfaces\IIdentityManager.cs" />
     <Compile Include="Interfaces\IIdentityRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

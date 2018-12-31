@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Common.Interfaces
 {
-    interface IIdentityManager
+    public interface IIdentityManager
     {
+        void AddUser(string name, int age, string address, string workAddress);
     }
 }

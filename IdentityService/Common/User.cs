@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public class Identity
+    public class User
     {
         private string fullName;
         private int age;
