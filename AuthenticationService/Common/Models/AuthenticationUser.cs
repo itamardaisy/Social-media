@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Amazon.DynamoDBv2.DataModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,21 +7,14 @@ using System.Threading.Tasks;
 
 namespace Common.Models
 {
+    [DynamoDBTable("AnimalsInventory")]
     public class AuthenticationUser
     {
-        private string username;
-        private string password;
+        [DynamoDBHashKey]
+        public int UserId { get; set; }
 
-        public string Password
-        {
-            get { return password; }
-            set { password = value; }
-        }
-
-        public string Username
-        {
-            get { return username; }
-            set { username = value; }
-        }
+        [DynamoDBRangeKey]
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }
