@@ -19,9 +19,16 @@ namespace Dal
         /// <param name="user"> The Added User </param>
         public void AddUserToDatabase(AuthenticationUser user)
         {
-            var client = new AmazonDynamoDBClient();
-            var context = new DynamoDBContext(client);
-            context.Save(user);
+            DynamoDBContextConfig contextConfig = new DynamoDBContextConfig
+            {
+                Conversion = DynamoDBEntryConversion.V2,
+                ConsistentRead = true
+            };
+
+            using (var context = new DynamoDBContext(contextConfig))
+            {
+                context.Save(user);
+            }
         }
     }
 }

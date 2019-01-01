@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Common.Models
 {
-    [DynamoDBTable("AnimalsInventory")]
+    [DynamoDBTable("AuthenticationTable")]
     public class AuthenticationUser
     {
         [DynamoDBHashKey]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [DynamoDBRangeKey]
         public string Username { get; set; }
