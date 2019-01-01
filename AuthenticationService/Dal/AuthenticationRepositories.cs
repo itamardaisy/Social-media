@@ -1,4 +1,5 @@
 ﻿using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.DocumentModel;
 using Common.Interfaces;
 using Common.Models;
@@ -19,14 +20,8 @@ namespace Dal
         public void AddUserToDatabase(AuthenticationUser user)
         {
             var client = new AmazonDynamoDBClient();
-            var table = Table.LoadTable(client, "AuthenticationTable");
-            var item = new Document();
-
-            item["UserId"] = user.UserId;
-            item["Username"] = user.Username;
-            item["Password"] = user.Password;
-
-            table.PutItem(item);
+            var context = new DynamoDBContext(client);
+            context.Save(user);
         }
     }
 }
