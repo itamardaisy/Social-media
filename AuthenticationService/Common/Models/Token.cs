@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Common.Models
 {
-    [DynamoDBTable("AuthenticationTable")]
-    public class AuthenticationUser
+    [DynamoDBTable("TokensTable")]
+    public class Token
     {
         [DynamoDBHashKey]
-        public string UserId { get; set; }
+        public string TokenId { get; set; }
 
         [DynamoDBRangeKey]
         public string Username { get; set; }
 
-        public string Password { get; set; }
+        public bool IsValid { get; set; }
     }
 }

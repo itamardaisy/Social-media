@@ -1,6 +1,5 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
-using Amazon.DynamoDBv2.DocumentModel;
 using Common.Interfaces;
 using Common.Models;
 using System;
@@ -9,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dal
+namespace Dal.UserRepositories
 {
-    public class AuthenticationRepositories : IAuthenticationRepositories
+    public class UserRepository : IUserRepository
     {
         /// <summary>
         /// Add the AuthenticationUser after checking the user validatioon with class validation
@@ -21,8 +20,8 @@ namespace Dal
         {
             DynamoDBContextConfig contextConfig = new DynamoDBContextConfig
             {
-                Conversion = DynamoDBEntryConversion.V2,
-                ConsistentRead = true
+                ConsistentRead = true,
+                Conversion = DynamoDBEntryConversion.V2
             };
 
             using (var context = new DynamoDBContext(contextConfig))
@@ -30,5 +29,7 @@ namespace Dal
                 context.Save(user);
             }
         }
+
+        public void CheckIfUserExist
     }
 }

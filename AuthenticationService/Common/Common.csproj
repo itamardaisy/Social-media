@@ -49,10 +49,12 @@
   <ItemGroup>
     <Compile Include="Environment Services\Logger.cs" />
     <Compile Include="Environment Services\LogService.cs" />
-    <Compile Include="Interfaces\IAuthenticationRepositories.cs" />
+    <Compile Include="Interfaces\ITokenRepository.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Interfaces\ILoginService.cs" />
     <Compile Include="Interfaces\IValidation.cs" />
     <Compile Include="Models\AuthenticationUser.cs" />
+    <Compile Include="Models\Token.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

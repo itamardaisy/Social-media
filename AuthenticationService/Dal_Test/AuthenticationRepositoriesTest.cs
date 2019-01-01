@@ -1,6 +1,7 @@
 ﻿using System;
 using Common.Models;
 using Dal;
+using Dal.UserRepositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dal_Test
@@ -11,7 +12,7 @@ namespace Dal_Test
         [TestMethod]
         public void AddUserToDatabase_ShouldReturnTheWantedUser()
         {
-            AuthenticationRepositories AR = new AuthenticationRepositories();
+            UserRepository AR = new UserRepository();
             AuthenticationUser user = new AuthenticationUser { UserId = "1", Password = "1234", Username = "itamar" };
             AR.AddUserToDatabase(user);
         }

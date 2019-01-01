@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Common.Interfaces
 {
-    public interface IAuthenticationRepositories
+    public interface ITokenRepository
     {
-        void AddUserToDatabase(AuthenticationUser user);
+        void AddNewToken(AuthenticationUser user);
+
+        bool CheckIfTokenIsValid(Token token);
     }
 }
