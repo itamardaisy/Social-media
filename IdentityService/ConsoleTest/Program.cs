@@ -16,44 +16,44 @@ namespace ConsoleTest
             var userLibrary = new UserIdentityRepository();
 
             Console.WriteLine(userLibrary.GetUserIdentity("omer cohen"));
-
+            Console.ReadLine();
             /*Intialize and create tables if they don't already exist*/
-            //userMaker.Init();
+            userMaker.Init();
 
-            ///*CREATE*/
-            //foreach (var user in userMaker.UserIdentities)
+            /*CREATE*/
+            foreach (var user in userMaker.UserIdentities)
+            {
+                userLibrary.AddUserIdentity(user);
+            }
+
+
+            /*Read*/
+            IEnumerable<UserIdentity> savedUserIdentities = userLibrary.GetAllUserIdentities();
+
+            foreach (var saveUser in savedUserIdentities)
+            {
+                Console.WriteLine("Items");
+                Console.WriteLine("FullName : {0}", saveUser.FullName);
+                Console.WriteLine("Age : {0}", saveUser.Age);
+                Console.WriteLine("Address : {0}", saveUser.Address);
+            }
+
+            /*Update*/
+            //DVD theDarkKnightDvd = dvdLibrary.SearchDvds("The Dark Knight", 2008).SingleOrDefault();
+            //if (theDarkKnightDvd != null)
             //{
-            //    userLibrary.AddUserIdentity(user);
+            //    theDarkKnightDvd.Director = "Will Smith";
+            //    dvdLibrary.ModifyDvd(theDarkKnightDvd);
+
             //}
 
 
-            ///*Read*/
-            //IEnumerable<UserIdentity> savedUserIdentities = userLibrary.GetAllUserIdentities();
-
-            //foreach (var saveUser in savedUserIdentities)
-            //{
-            //    Console.WriteLine("Items");
-            //    Console.WriteLine("FullName : {0}", saveUser.FullName);
-            //    Console.WriteLine("Age : {0}", saveUser.Age);
-            //    Console.WriteLine("Address : {0}", saveUser.Address);
-            //}
-
-            ///*Update*/
-            ////DVD theDarkKnightDvd = dvdLibrary.SearchDvds("The Dark Knight", 2008).SingleOrDefault();
-            ////if (theDarkKnightDvd != null)
-            ////{
-            ////    theDarkKnightDvd.Director = "Will Smith";
-            ////    dvdLibrary.ModifyDvd(theDarkKnightDvd);
-
-            ////}
-
-
-            ///*Delete*/
-            //UserIdentity omerCohen = userLibrary.SearchUserIdentities("omer cohen", 24).SingleOrDefault();
-            //if (omerCohen != null)
-            //{
-            //    userLibrary.DeleteUserIdentity(omerCohen);
-            //}
+            /*Delete*/
+            UserIdentity omerCohen = userLibrary.SearchUserIdentities("omer cohen", 24).SingleOrDefault();
+            if (omerCohen != null)
+            {
+                userLibrary.DeleteUserIdentity(omerCohen);
+            }
         }
     }
 }

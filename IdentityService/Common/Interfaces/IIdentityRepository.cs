@@ -11,6 +11,7 @@ namespace Common.Interfaces
         void AddUserIdentity(UserIdentity user);
         void ModifyUserIdentity(UserIdentity user);
         IEnumerable<UserIdentity> GetAllUserIdentities();
+        UserIdentity GetUserIdentity(string name);
         IEnumerable<UserIdentity> SearchUserIdentities(string fullName, int age);
         void DeleteUserIdentity(UserIdentity user);
     }
