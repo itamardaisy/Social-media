@@ -1,4 +1,5 @@
-﻿using Amazon.DynamoDBv2.DocumentModel;
+﻿using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DocumentModel;
 using Common;
 using Common.DynamoDB;
 using Common.Interfaces;
@@ -25,6 +26,10 @@ namespace DAL
         /// <param name="user"></param>
         public void AddUserIdentity(UserIdentity user)
         {
+            if (SearchUserIdentities(user.Email, user.FullName).SingleOrDefault() == null)
+            {
+                throw new AmazonDynamoDBException("Email already exist");
+            }
             _dynamoService.Store(user);
         }
 
@@ -48,18 +53,18 @@ namespace DAL
         /// <summary>
         /// Search For User Identity
         /// </summary>
-        /// <param name="fullName"></param>
+        /// <param name="mail"></param>
         /// <param name="age"></param>
-        public IEnumerable<UserIdentity> SearchUserIdentities(string fullName, int age)
+        public IEnumerable<UserIdentity> SearchUserIdentities(string mail, string name)
         {
-            IEnumerable<UserIdentity> filteredUserIdentities = _dynamoService.DbContext.Query<UserIdentity>(fullName, QueryOperator.Equal, age);
+            IEnumerable<UserIdentity> filteredUserIdentities = _dynamoService.DbContext.Query<UserIdentity>(mail, QueryOperator.Equal, name);
 
             return filteredUserIdentities;
         }
 
-        public UserIdentity GetUserIdentity(string name)
+        public UserIdentity GetUserIdentity(string mail)
         {
-            return _dynamoService.GetItem<UserIdentity>(name);
+            return _dynamoService.GetItem<UserIdentity>(mail);
         }
 
         /// <summary>

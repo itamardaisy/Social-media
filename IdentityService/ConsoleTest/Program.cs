@@ -15,12 +15,28 @@ namespace ConsoleTest
             var userMaker = new UserIdentityMaker();
             var userLibrary = new UserIdentityRepository();
 
-            Console.WriteLine(userLibrary.GetUserIdentity("omer cohen"));
-            Console.ReadLine();
+            //var test =
+            //{
+            //    "name" = "fg",
+            //    "age" = "fg",
+            //    "addresss" = "fg",
+            //}
+
+            //Console.WriteLine(userLibrary.GetUserIdentity("omer cohen"));
             /*Intialize and create tables if they don't already exist*/
             userMaker.Init();
+            var userTest = new UserIdentity
+            {
+                Email = "it@g.com",
+                FullName = "omer cohen",
+                Age = 20,
+                Address = "bet shan",
+                WorkAddress = "sela"
+            };
 
-            /*CREATE*/
+            userLibrary.AddUserIdentity(userTest);
+            //Console.ReadLine();
+            ///*CREATE*/
             foreach (var user in userMaker.UserIdentities)
             {
                 userLibrary.AddUserIdentity(user);
@@ -39,17 +55,17 @@ namespace ConsoleTest
             }
 
             /*Update*/
-            //DVD theDarkKnightDvd = dvdLibrary.SearchDvds("The Dark Knight", 2008).SingleOrDefault();
-            //if (theDarkKnightDvd != null)
+            //UserIdentity theUserIdentity = userLibrary.SearchUserIdentities("gmail").SingleOrDefault();
+            //if (theUserIdentity != null)
             //{
-            //    theDarkKnightDvd.Director = "Will Smith";
-            //    dvdLibrary.ModifyDvd(theDarkKnightDvd);
-
+            //    theUserIdentity.Address = "ramat gan";
+            //    userLibrary.ModifyUserIdentity(theUserIdentity);
             //}
 
 
             /*Delete*/
-            UserIdentity omerCohen = userLibrary.SearchUserIdentities("omer cohen", 24).SingleOrDefault();
+            UserIdentity omerCohen = userLibrary.SearchUserIdentities("gmail", "omer cohen").SingleOrDefault();
+            Console.WriteLine("omer in delete: " + omerCohen);
             if (omerCohen != null)
             {
                 userLibrary.DeleteUserIdentity(omerCohen);

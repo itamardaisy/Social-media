@@ -26,6 +26,7 @@ namespace DAL
                 {
                     new UserIdentity
                     {
+                        Email = "the@g.com",
                         FullName = "The Godfather",
                         Age = 1972 ,
                         Address = "tel aviv",
@@ -34,6 +35,7 @@ namespace DAL
 
                     new UserIdentity
                     {
+                        Email = "it@g.com",
                         FullName = "Itamaer Daisy",
                         Age = 24 ,
                         Address = "raanana",
@@ -41,6 +43,7 @@ namespace DAL
                     },
                     new UserIdentity
                     {
+                        Email = "omer@g.com",
                         FullName = "omer cohen",
                         Age = 24 ,
                         Address = "bet shan",
@@ -53,11 +56,11 @@ namespace DAL
         public void Init()
         {
             List<string> currentTables = _client.ListTables().TableNames;
-            if (!currentTables.Contains("UserIdentity"))
+            if (!currentTables.Contains("Identity"))
             {
                 var createTableRequest = new CreateTableRequest
                 {
-                    TableName = "UserIdentity",
+                    TableName = "Identity",
                     ProvisionedThroughput = new ProvisionedThroughput
                     {
                         ReadCapacityUnits = 1,
@@ -67,24 +70,24 @@ namespace DAL
                     {
                         new KeySchemaElement
                         {
-                            AttributeName = "FullName",
+                            AttributeName = "Email",
                             KeyType = "HASH"
                         },
                         new KeySchemaElement
                         {
-                            AttributeName = "Age",
-                            KeyType = "RANGE"
-                        },
+                            AttributeName = "FullName",
+                            KeyType = "Range"
+                        }
                     },
                     AttributeDefinitions = new List<AttributeDefinition>()
                     {
                         new AttributeDefinition()
                         {
-                            AttributeName = "FullName",AttributeType = "S"
+                            AttributeName = "Email",AttributeType = "S"
                         },
                         new AttributeDefinition()
                         {
-                            AttributeName = "Age",AttributeType = "N"
+                            AttributeName = "Range", AttributeType = "S"
                         }
                     }
                 };

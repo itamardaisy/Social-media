@@ -11,7 +11,6 @@ namespace BL
 {
     public class IdentityManager : IIdentityManager
     {
-        // UserIdentityRepository userLibrary = new UserIdentityRepository();
         private readonly IIdentityRepository userLibrary;
         public IdentityManager(IIdentityRepository identityRepository)
         {
@@ -21,16 +20,8 @@ namespace BL
         /// <summary>
         /// Add user to dynamoDb - call dal
         /// </summary>
-        public void AddUser(string name, int age, string address, string workAddress)
+        public void AddUser(UserIdentity user)
         {
-            var user = new UserIdentity
-            {
-                FullName = name,
-                Age = age,
-                Address = address,
-                WorkAddress = workAddress
-            };
-
             userLibrary.AddUserIdentity(user);
         }
 
@@ -53,9 +44,9 @@ namespace BL
         /// <summary>
         /// returns user by the name
         /// </summary>
-        public UserIdentity GetUser(string name)
+        public UserIdentity GetUser(string email)
         {
-            return userLibrary.GetUserIdentity(name);
+            return userLibrary.GetUserIdentity(email);
         }
 
         /// <summary>

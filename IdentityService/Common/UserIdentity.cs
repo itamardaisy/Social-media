@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    [DynamoDBTable("UserIdentity")]
+    [DynamoDBTable("Identity")]
     public class UserIdentity
     {
         [DynamoDBHashKey]
-        public string FullName { get; set; }
+        public string Email { get; set; }
         [DynamoDBRangeKey]
+        public string FullName { get; set; }
         public int Age { get; set; }
-        [DynamoDBProperty]
         public string Address { get; set; }
         public string WorkAddress { get; set; }
     }

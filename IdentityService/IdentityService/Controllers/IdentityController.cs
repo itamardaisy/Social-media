@@ -23,11 +23,11 @@ namespace IdentityService.Controllers
         /// </summary>
         [HttpPost]
         [Route("api/Identity/{name}")]
-        public HttpResponseMessage CreateUserIdentity(string name, int age, string address, string workAddress)
+        public HttpResponseMessage CreateUserIdentity(UserIdentity userIdentity)
         {
             try
             {
-                bl.AddUser(name, age, address, workAddress);
+                bl.AddUser(userIdentity);
                 return Request.CreateResponse(HttpStatusCode.OK, "User added successfully");
             }
             catch (HttpResponseException e)
@@ -44,11 +44,11 @@ namespace IdentityService.Controllers
         /// get useridentity
         /// </summary>
         [Route("api/Identity/{name}")]
-        public HttpResponseMessage GetUserIdentity(string name)
+        public HttpResponseMessage GetUserIdentity(string email)
         {
             try
             {
-                var user = bl.GetUser(name);
+                var user = bl.GetUser(email);
                 return Request.CreateResponse(HttpStatusCode.OK, user);
             }
             catch (KeyNotFoundException e)
