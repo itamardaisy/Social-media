@@ -1,0 +1,16 @@
+﻿@model Client.Models.UserIdentity
+@{
+    ViewBag.Title = "Identity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>User Info</h2>
+
+<form action="/Form/FormOne" method="post">
+    <input type="text" name="textBoxStringData" />
+    <input type="checkbox" name="checkboxData" />
+    <input type="number" name="textBoxIntData" />
+
+    <input type="submit" value="Submit weakly typed form" />
+</form>
+

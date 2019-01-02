@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Client.Models;
+using Client.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +10,35 @@ namespace Client.Controllers
 {
     public class HomeController : Controller
     {
-        //zss
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Main()
+        {
+            var viewModel = new UserIdentityViewModel
+            {
+                Identity = new UserIdentity
+                {
+                    Email = "ggg@g.com",
+                    FirstName = "sanad",
+                    LastName = "san",
+                    Age = 23,
+                    Address = "dsffd",
+                    WorkAddress = "fsfg"
+                }
+            };
+
+            return View(viewModel);
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult Register()
         {
             return View();
         }
@@ -23,8 +52,6 @@ namespace Client.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
