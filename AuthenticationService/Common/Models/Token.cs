@@ -17,5 +17,7 @@ namespace Common.Models
         public string Username { get; set; }
 
         public bool IsValid { get; set; }
+
+        public DateTime Expired { get; set; }
     }
 }

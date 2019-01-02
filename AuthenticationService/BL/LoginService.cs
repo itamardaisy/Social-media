@@ -24,5 +24,10 @@ namespace BL
         {
             throw new NotImplementedException();
         }
+
+        public string TokenGenerator()
+        {
+            return Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+        }
     }
 }
