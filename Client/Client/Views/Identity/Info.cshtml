@@ -1,0 +1,29 @@
+﻿@model Client.Models.UserIdentity
+@{
+    ViewBag.Title = "Identity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>User Info</h2>
+
+<form action="">
+    <div class="form-group">
+        <label for="FullName">Full Name</label>
+        <p>@Model.FirstName @Model.LastName</p>
+        @*<input type="text" value="@Model.FirstName @Model.LastName" class="form-control" id="FullName">*@
+    </div>
+    <div class="form-group">
+        <label for="age">Age</label>
+        <p>@Model.Age</p>
+    </div>
+    <div class="form-group">
+        <label for="address">Address</label>
+        <p class="help">@Model.Address</p>
+    </div>
+    <div class="form-group">
+        <label for="work">Work Address</label>
+        <p>@Model.WorkAddress</p>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
