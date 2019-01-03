@@ -29,6 +29,7 @@ namespace IdentityService.Controllers
             try
             {
                 bl.AddUser(userIdentity);
+
                 return Request.CreateResponse(HttpStatusCode.OK, "User added successfully");
             }
             catch (HttpResponseException e)
