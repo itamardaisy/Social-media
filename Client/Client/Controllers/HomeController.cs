@@ -1,5 +1,6 @@
 ﻿using Client.Models;
 using Client.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Client.Controllers
         public HomeController()
         {
             _client = new HttpClient();
-            _client.BaseAddress = new Uri("");
+            _client.BaseAddress = new Uri("http://localhost:39265/");
         }
         public ActionResult Index()
         {
@@ -25,18 +26,17 @@ namespace Client.Controllers
 
         public ActionResult Main(string email)
         {
-            var identity = _client.GetAsync($"api/identity/{email}").Result;
+            var result = _client.GetAsync($"api/Identity/GetUserIdentity?email={email}").Result;
+            if (!result.IsSuccessStatusCode)
+            {
+                throw new Exception(result.Content.ReadAsStringAsync().Result);
+            }
+
+            string response = result.Content.ReadAsStringAsync().Result;
+            var identity = JsonConvert.DeserializeObject<UserIdentity>(response);
             var viewModel = new UserIdentityViewModel
             {
-                Identity = new UserIdentity
-                {
-                    Email = "ggg@g.com",
-                    FirstName = "sanad",
-                    LastName = "san",
-                    Age = 23,
-                    Address = "dsffd",
-                    WorkAddress = "fsfg"
-                }
+                Identity = identity
             };
 
             return View(viewModel);
