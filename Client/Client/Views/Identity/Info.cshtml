@@ -1,4 +1,4 @@
-﻿@model Client.Models.UserIdentity
+﻿@model Client.ViewModels.UserIdentityViewModel
 @{
     ViewBag.Title = "Identity";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,24 +6,30 @@
 
 <h2>User Info</h2>
 
-<form action="">
+<form action="~/Views/Home/Main.cshtml">
     <div class="form-group">
-        <label for="FullName">Full Name</label>
-        <p>@Model.FirstName @Model.LastName</p>
-        @*<input type="text" value="@Model.FirstName @Model.LastName" class="form-control" id="FullName">*@
+        <label for="FirstName">First Name</label>
+        <input type="text" name="FirstName" class="form-control" value="@Model.Identity.FirstName" />
+    </div>
+    <div class="form-group">
+        <label for="LastName">Last Name</label>
+        <input type="text" name="FirstName" class="form-control" value="@Model.Identity.LastName" />
     </div>
     <div class="form-group">
         <label for="age">Age</label>
-        <p>@Model.Age</p>
+        <input type="text" name="FirstName" class="form-control" value="@Model.Identity.Age" />
     </div>
     <div class="form-group">
         <label for="address">Address</label>
-        <p class="help">@Model.Address</p>
+        <input type="text" name="FirstName" class="form-control" value="@Model.Identity.Address" />
     </div>
     <div class="form-group">
         <label for="work">Work Address</label>
-        <p>@Model.WorkAddress</p>
+        <input type="text" name="FirstName" class="form-control" value="@Model.Identity.WorkAddress" />
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary">
+        @Html.ActionLink("Save","Edit","Identity",
+        routeValues: new {identity = Model.Identity},htmlAttributes: null)
+    </button>
 </form>
 

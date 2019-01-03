@@ -27,7 +27,8 @@ namespace DAL
                     new UserIdentity
                     {
                         Email = "the@g.com",
-                        FullName = "The Godfather",
+                        FirstName = "The Godfather",
+                        LastName = "ggg",
                         Age = 1972 ,
                         Address = "tel aviv",
                         WorkAddress = "england"
@@ -36,7 +37,8 @@ namespace DAL
                     new UserIdentity
                     {
                         Email = "it@g.com",
-                        FullName = "Itamaer Daisy",
+                        FirstName = "Itamaer Daisy",
+                        LastName = "Dfsdg",
                         Age = 24 ,
                         Address = "raanana",
                         WorkAddress = "sela"
@@ -44,7 +46,8 @@ namespace DAL
                     new UserIdentity
                     {
                         Email = "omer@g.com",
-                        FullName = "omer cohen",
+                        FirstName = "omer cohen",
+                        LastName = "fdsgs",
                         Age = 24 ,
                         Address = "bet shan",
                         WorkAddress = "amazon"

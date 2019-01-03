@@ -42,6 +42,26 @@ namespace IdentityService.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("UpdateUserIdentity")]
+        public HttpResponseMessage UpdateUserIdentity(UserIdentity userIdentity)
+        {
+            try
+            {
+                bl.UpdateUser(userIdentity);
+
+                return Request.CreateResponse(HttpStatusCode.OK, "User updated successfully");
+            }
+            catch (HttpResponseException e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message);
+            }
+        }
+
         /// <summary>
         /// get useridentity
         /// </summary>

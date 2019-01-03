@@ -29,17 +29,9 @@ namespace BL
         /// <summary>
         /// delete user from db - calling dal
         /// </summary>
-        public void DeleteUser(string name, int age, string address, string workAddress)
+        public void DeleteUser(UserIdentity identity)
         {
-            var user = new UserIdentity
-            {
-                FullName = name,
-                Age = age,
-                Address = address,
-                WorkAddress = workAddress
-            };
-
-            userLibrary.DeleteUserIdentity(user);
+            userLibrary.DeleteUserIdentity(identity);
         }
 
         /// <summary>
@@ -53,17 +45,9 @@ namespace BL
         /// <summary>
         /// update existing user
         /// </summary>
-        public void UpdateUser(string name, int age, string address, string workAddress)
+        public void UpdateUser(UserIdentity identity)
         {
-            var user = new UserIdentity
-            {
-                FullName = name,
-                Age = age,
-                Address = address,
-                WorkAddress = workAddress
-            };
-
-            userLibrary.ModifyUserIdentity(user);
+            userLibrary.ModifyUserIdentity(identity);
         }
     }
 }

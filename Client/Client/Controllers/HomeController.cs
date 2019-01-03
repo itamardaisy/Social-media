@@ -19,6 +19,7 @@ namespace Client.Controllers
             _client = new HttpClient();
             _client.BaseAddress = new Uri("http://localhost:39265/");
         }
+
         public ActionResult Index()
         {
             return View();
@@ -40,7 +41,7 @@ namespace Client.Controllers
             };
 
             return View(viewModel);
-        }
+        }       
 
         public ActionResult Login()
         {

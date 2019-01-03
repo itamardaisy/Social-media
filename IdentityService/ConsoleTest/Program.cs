@@ -17,8 +17,9 @@ namespace ConsoleTest
             var userLibrary = new UserIdentityRepository();
             var userTest = new UserIdentity
             {
-                Email = "it@g.com",
-                FullName = "omer cohen",
+                Email = "rit@g.com",
+                FirstName = "sanad",
+                LastName = "cohen",
                 Age = 20,
                 Address = "bet shan",
                 WorkAddress = "sela"
@@ -26,6 +27,7 @@ namespace ConsoleTest
 
             //userLibrary.AddUserIdentity(userTest);
             //var u = userLibrary.GetUserIdentity("it@g.com");
+            userLibrary.ModifyUserIdentity(userTest);
             //Console.WriteLine(u);
 
             string url = "http://localhost:39265/";
@@ -90,12 +92,12 @@ namespace ConsoleTest
             //}
 
             ///*Update*/
-            ////UserIdentity theUserIdentity = userLibrary.SearchUserIdentities("gmail").SingleOrDefault();
-            ////if (theUserIdentity != null)
-            ////{
-            ////    theUserIdentity.Address = "ramat gan";
-            ////    userLibrary.ModifyUserIdentity(theUserIdentity);
-            ////}
+            UserIdentity theUserIdentity = userLibrary.SearchUserIdentities("gmail").SingleOrDefault();
+            if (theUserIdentity != null)
+            {
+                theUserIdentity.Address = "ramat gan";
+                userLibrary.ModifyUserIdentity(theUserIdentity);
+            }
 
 
             ///*Delete*/

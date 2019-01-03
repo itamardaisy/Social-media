@@ -1,0 +1,15 @@
+D:\Documents\Sela\Project 2\IdentityService\DAL\bin\Debug\DAL.dll
+D:\Documents\Sela\Project 2\IdentityService\DAL\bin\Debug\DAL.pdb
+D:\Documents\Sela\Project 2\IdentityService\DAL\bin\Debug\AWSSDK.Core.dll
+D:\Documents\Sela\Project 2\IdentityService\DAL\bin\Debug\AWSSDK.DynamoDBv2.dll
+D:\Documents\Sela\Project 2\IdentityService\DAL\bin\Debug\Common.dll
+D:\Documents\Sela\Project 2\IdentityService\DAL\bin\Debug\Common.pdb
+D:\Documents\Sela\Project 2\IdentityService\DAL\bin\Debug\AWSSDK.Core.pdb
+D:\Documents\Sela\Project 2\IdentityService\DAL\bin\Debug\AWSSDK.Core.xml
+D:\Documents\Sela\Project 2\IdentityService\DAL\bin\Debug\AWSSDK.DynamoDBv2.pdb
+D:\Documents\Sela\Project 2\IdentityService\DAL\bin\Debug\AWSSDK.DynamoDBv2.xml
+D:\Documents\Sela\Project 2\IdentityService\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+D:\Documents\Sela\Project 2\IdentityService\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\Documents\Sela\Project 2\IdentityService\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\Documents\Sela\Project 2\IdentityService\DAL\obj\Debug\DAL.dll
+D:\Documents\Sela\Project 2\IdentityService\DAL\obj\Debug\DAL.pdb

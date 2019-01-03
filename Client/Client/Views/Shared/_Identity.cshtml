@@ -5,7 +5,6 @@
     <div class="form-group">
         <label for="FullName">Full Name</label>
         <p>@Model.FirstName @Model.LastName</p>
-        @*<input type="text" value="@Model.FirstName @Model.LastName" class="form-control" id="FullName">*@
     </div>
     <div class="form-group">
         <label for="age">Age</label>
@@ -21,4 +20,9 @@
     </div>
 </form>
 
-<button class="btn">@Html.ActionLink("Login", "Info", "Identity")</button>
+<button class="btn">@Html.ActionLink("Edit", "Info", "Identity", routeValues: new
+               {
+                   userIdentity = Model,
+               },
+               htmlAttributes: null)
+</button>

@@ -9,8 +9,8 @@ namespace Common.Interfaces
     public interface IIdentityManager
     {
         void AddUser(UserIdentity user);
-        void UpdateUser(string name, int age, string address, string workAddress);
-        void DeleteUser(string name, int age, string address, string workAddress);
+        void UpdateUser(UserIdentity identity);
+        void DeleteUser(UserIdentity identity);
         UserIdentity GetUser(string email);
     }
 }
