@@ -1,7 +1,7 @@
 ﻿@model Client.Models.UserIdentity
 
 
-<form class="identity">
+<form>
     <div class="form-group">
         <label for="FullName">Full Name</label>
         <p>@Model.FirstName @Model.LastName</p>
@@ -20,3 +20,5 @@
         <p>@Model.WorkAddress</p>
     </div>
 </form>
+
+<button class="btn">@Html.ActionLink("Login", "Info", "Identity")</button>
