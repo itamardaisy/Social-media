@@ -3,8 +3,10 @@ using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.Model;
 using Common;
+using Common.Exceptions;
 using Common.Interfaces;
 using Common.Models;
+using Dal.TokenRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +17,8 @@ namespace Dal.UserRepositories
 {
     public class UserRepository : IUserRepository
     {
-        private DynamoDBContextConfig _contextConfig;
-        private AmazonDynamoDBConfig _config;
-        private AmazonDynamoDBClient _client;
+        private readonly DynamoDBContextConfig _contextConfig;
+        private readonly TokenRipository _tokenRipository;
 
         public UserRepository()
         {
@@ -26,8 +27,7 @@ namespace Dal.UserRepositories
                 ConsistentRead = true,
                 Conversion = DynamoDBEntryConversion.V2
             };
-            _config = new AmazonDynamoDBConfig();
-            _client = new AmazonDynamoDBClient(_config);
+            _tokenRipository = new TokenRipository();
         }
 
         /// <summary>
@@ -38,20 +38,50 @@ namespace Dal.UserRepositories
         {
             using (var context = new DynamoDBContext(_contextConfig))
             {
-                try{
-                    context.Save(user);
+                try
+                {
+                    if(CheckIfUserExist(user).Result)
+                        context.Save(user);
                 }
                 catch (Exception ex){
-                    throw new SaveToDatabaseException("A problrm accur the save to context operation", ex.InnerException);
+                    throw new SaveToDatabaseException("A problrm during the save to context operation", ex.InnerException);
                 }
             }
         }
 
-        public async void CheckIfUserExist(AuthenticationUser user)
+        public async Task<bool> CheckIfUserExist(AuthenticationUser user)
         {
             using (var context = new DynamoDBContext(_contextConfig))
             {
-                var userCheck = await context.LoadAsync(userCheck.UserId);
+                try
+                {
+                    var userCheck = await context.LoadAsync<AuthenticationUser>(user.Email);
+                    return userCheck.Email == user.Email ? true : false;
+                }
+                catch(Exception ex)
+                {
+                    throw new GetFromDatabaseException("A problrm during the Load from context operation", ex.InnerException);
+                }
+            }
+        }
+
+        public async Task<AuthenticationUser> Login(string email, string password)
+        {
+            using (var context = new DynamoDBContext(_contextConfig))
+            {
+                var userCheck = await context.LoadAsync<AuthenticationUser>(email);
+                if (userCheck != null)
+                {
+                    if (userCheck.Password == password)
+                    {
+                        _tokenRipository.AddNewToken(userCheck);
+                        return userCheck;
+                    }
+                    else
+                        return null;
+                }
+                else
+                    return null;
             }
         }
     }

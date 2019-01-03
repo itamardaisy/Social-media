@@ -10,5 +10,9 @@ namespace Common.Interfaces
     public interface IUserRepository
     {
         void AddUserToDatabase(AuthenticationUser user);
+
+        Task<AuthenticationUser> Login(string email, string password);
+
+        Task<bool> CheckIfUserExist(AuthenticationUser user);
     }
 }

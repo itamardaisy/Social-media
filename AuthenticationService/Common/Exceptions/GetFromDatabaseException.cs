@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Common.Exceptions
 {
-    class GetFromDatabaseException
+    public class GetFromDatabaseException : System.Exception
     {
+        public GetFromDatabaseException() : base(){}
+
+        public GetFromDatabaseException(string msg) : base(msg){}
+
+        public GetFromDatabaseException(string msg, System.Exception innerEx) : base(msg, innerEx){}
     }
 }

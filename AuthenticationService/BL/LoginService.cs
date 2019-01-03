@@ -1,4 +1,5 @@
-﻿using Common.Interfaces;
+﻿using Common.Environment_Services;
+using Common.Interfaces;
 using Common.Models;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,28 @@ namespace BL
 {
     public class LoginService : ILoginService
     {
-        public AuthenticationUser Login(string username, string password)
+        private IUserRepository _userRepository;
+
+        public LoginService()
         {
-            throw new NotImplementedException();
+        }
+
+        public LoginService(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
+        public AuthenticationUser Login(string email, string password)
+        {
+            try
+            {
+                return _userRepository.Login(email, password).Result;
+            }
+            catch(Exception ex)
+            {
+                LogService.WriteExceptionsToLogger(ex);
+                return null;
+            }            
         }
 
         public AuthenticationUser LoginViaFacebook(string token)
@@ -23,11 +43,6 @@ namespace BL
         public bool Logout(string token)
         {
             throw new NotImplementedException();
-        }
-
-        public string TokenGenerator()
-        {
-            return Convert.ToBase64String(Guid.NewGuid().ToByteArray());
         }
     }
 }

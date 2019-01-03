@@ -26,9 +26,7 @@ namespace BL.Tests
         [TestMethod()]
         public void LogoutTest()
         {
-            BL.LoginService loginService = new LoginService();
-            var str = loginService.TokenGenerator();
-            Assert.AreNotEqual("s/ldrjRjX0yynzYj37VcNA==", str);
+            Assert.Fail();
         }
     }
 }

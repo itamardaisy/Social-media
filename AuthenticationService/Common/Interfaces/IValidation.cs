@@ -8,6 +8,6 @@ namespace Common.Interfaces
 {
     public interface IValidation
     {
-        bool CheckClientInputs(string name, string password);
+        bool CheckNewUserFields(string email, string username, string password);
     }
 }

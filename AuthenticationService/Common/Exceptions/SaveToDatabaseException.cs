@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    class SaveToDatabaseException
+    public class SaveToDatabaseException : Exception
     {
+        public SaveToDatabaseException() : base(){}
+
+        public SaveToDatabaseException(string msg) : base(msg){}
+
+        public SaveToDatabaseException(string msg, Exception innerEx) : base(msg, innerEx){}
     }
 }

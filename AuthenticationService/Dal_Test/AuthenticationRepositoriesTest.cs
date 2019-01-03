@@ -13,7 +13,7 @@ namespace Dal_Test
         public void AddUserToDatabase_ShouldReturnTheWantedUser()
         {
             UserRepository AR = new UserRepository();
-            AuthenticationUser user = new AuthenticationUser { UserId = "1", Password = "1234", Username = "itamar" };
+            AuthenticationUser user = new AuthenticationUser { Email = "1", Password = "1234", Username = "itamar" };
             AR.AddUserToDatabase(user);
         }
     }

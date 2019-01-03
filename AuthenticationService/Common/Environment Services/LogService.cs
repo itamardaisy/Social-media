@@ -8,7 +8,7 @@ namespace Common.Environment_Services
 {
     public static class LogService
     {
-        public static void WriteExceptionsToLogger(Exception ex)
+        public static void WriteExceptionsToLogger(System.Exception ex)
         {
             Logger.GetInstance().LogWrite(ex.Source);
             Logger.GetInstance().LogWrite(ex.StackTrace);
