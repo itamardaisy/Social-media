@@ -26,7 +26,12 @@ namespace DAL
         /// <param name="user"></param>
         public void AddUserIdentity(UserIdentity user)
         {
-            if (SearchUserIdentities(user.Email, user.FullName).SingleOrDefault() == null)
+            //if (SearchUserIdentities(user.Email, user.FullName).SingleOrDefault() == null)
+            //{
+            //    throw new AmazonDynamoDBException("Email already exist");
+            //}
+            var email = GetUserIdentity(user.Email);
+            if (email != null)
             {
                 throw new AmazonDynamoDBException("Email already exist");
             }
@@ -55,13 +60,16 @@ namespace DAL
         /// </summary>
         /// <param name="mail"></param>
         /// <param name="age"></param>
-        public IEnumerable<UserIdentity> SearchUserIdentities(string mail, string name)
+        public IEnumerable<UserIdentity> SearchUserIdentities(string mail)
         {
-            IEnumerable<UserIdentity> filteredUserIdentities = _dynamoService.DbContext.Query<UserIdentity>(mail, QueryOperator.Equal, name);
+            IEnumerable<UserIdentity> filteredUserIdentities = _dynamoService.DbContext.Query<UserIdentity>(mail, QueryOperator.Equal);
 
             return filteredUserIdentities;
         }
 
+        /// <summary>
+        /// search for item in dynamodb, return null if didnt find
+        /// </summary>
         public UserIdentity GetUserIdentity(string mail)
         {
             return _dynamoService.GetItem<UserIdentity>(mail);

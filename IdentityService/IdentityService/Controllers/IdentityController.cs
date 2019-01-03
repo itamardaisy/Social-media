@@ -9,6 +9,7 @@ using System.Web.Http;
 
 namespace IdentityService.Controllers
 {
+    [RoutePrefix("api/Identity")]
     public class IdentityController : ApiController
     {
         private readonly IIdentityManager bl;
@@ -22,7 +23,7 @@ namespace IdentityService.Controllers
         /// Add userIdentity to db using http call from the client
         /// </summary>
         [HttpPost]
-        [Route("api/Identity/{name}")]
+        [Route("CreateUserIdentity")]
         public HttpResponseMessage CreateUserIdentity(UserIdentity userIdentity)
         {
             try
@@ -43,7 +44,8 @@ namespace IdentityService.Controllers
         /// <summary>
         /// get useridentity
         /// </summary>
-        [Route("api/Identity/{name}")]
+        [HttpGet]
+        [Route("GetUserIdentity")]
         public HttpResponseMessage GetUserIdentity(string email)
         {
             try

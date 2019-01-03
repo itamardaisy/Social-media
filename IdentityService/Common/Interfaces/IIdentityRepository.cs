@@ -12,7 +12,7 @@ namespace Common.Interfaces
         void ModifyUserIdentity(UserIdentity user);
         IEnumerable<UserIdentity> GetAllUserIdentities();
         UserIdentity GetUserIdentity(string email);
-        IEnumerable<UserIdentity> SearchUserIdentities(string email, string name);
+        IEnumerable<UserIdentity> SearchUserIdentities(string email);
         void DeleteUserIdentity(UserIdentity user);
     }
 }

@@ -11,11 +11,12 @@ namespace BL
 {
     public class IdentityManager : IIdentityManager
     {
-        private readonly IIdentityRepository userLibrary;
-        public IdentityManager(IIdentityRepository identityRepository)
-        {
-            userLibrary = identityRepository;
-        }
+        //private readonly IIdentityRepository userLibrary;
+        //public IdentityManager(IIdentityRepository identityRepository)
+        //{
+        //    userLibrary = identityRepository;
+        //}
+        private UserIdentityRepository userLibrary = new UserIdentityRepository();
 
         /// <summary>
         /// Add user to dynamoDb - call dal
