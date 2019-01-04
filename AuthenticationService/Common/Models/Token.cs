@@ -14,10 +14,10 @@ namespace Common.Models
         public string TokenId { get; set; }
 
         [DynamoDBRangeKey]
-        public string Username { get; set; }
+        public DateTime CreatedTime { get; set; }
+
+        public string Email { get; set; }
 
         public bool IsValid { get; set; }
-
-        public DateTime CreatedTime { get; set; }
     }
 }

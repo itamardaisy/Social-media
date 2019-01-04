@@ -65,23 +65,25 @@ namespace Dal.UserRepositories
             }
         }
 
-        public async Task<AuthenticationUser> Login(string email, string password)
+        public async Task<User> Login(string email, string password)
         {
             using (var context = new DynamoDBContext(_contextConfig))
             {
                 var userCheck = await context.LoadAsync<AuthenticationUser>(email);
                 if (userCheck != null)
-                {
                     if (userCheck.Password == password)
                     {
-                        _tokenRipository.AddNewToken(userCheck);
-                        return userCheck;
+                        string token = _tokenRipository.AddNewToken(userCheck);
+                        return new User(){
+                            Email = userCheck.Email,
+                            IsAvilable = true,
+                            Password = userCheck.Password,
+                            TokenId = token,
+                            Username = userCheck.Username
+                        }; 
                     }
-                    else
-                        return null;
-                }
-                else
-                    return null;
+                    else return null;
+                else return null;
             }
         }
     }

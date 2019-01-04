@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AuthenticationRepositoriesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TokenRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

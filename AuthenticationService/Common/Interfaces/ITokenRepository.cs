@@ -9,6 +9,8 @@ namespace Common.Interfaces
 {
     public interface ITokenRepository
     {
-        void AddNewToken(AuthenticationUser user);
+        string AddNewToken(AuthenticationUser user);
+
+        string ChangeUserToken(User user);
     }
 }

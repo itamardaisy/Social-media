@@ -11,7 +11,7 @@ namespace Common.Interfaces
     {
         void AddUserToDatabase(AuthenticationUser user);
 
-        Task<AuthenticationUser> Login(string email, string password);
+        Task<User> Login(string email, string password);
 
         Task<bool> CheckIfUserExist(AuthenticationUser user);
     }
