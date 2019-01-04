@@ -9,7 +9,7 @@ namespace Common.Interfaces
 {
     public interface ILoginService
     {
-        AuthenticationUser Login(string username, string password);
+        User Login(string username, string password);
 
         AuthenticationUser LoginViaFacebook(string token);
 

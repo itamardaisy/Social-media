@@ -1,8 +1,10 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
+using Amazon.DynamoDBv2.Model;
 using Common;
 using Common.Interfaces;
 using Common.Models;
+using ServiceStack.Aws.DynamoDb;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,8 @@ namespace Dal.TokenRepositories
         private readonly DynamoDBContextConfig _contextConfig;
         private readonly AmazonDynamoDBClient _dbclient;
         private readonly AmazonDynamoDBConfig _dbConfig;
+        private readonly PocoDynamo _pocoDynamo;
+        private readonly DynamoConverters Converters;
 
         public TokenRipository()
         {
@@ -26,13 +30,15 @@ namespace Dal.TokenRepositories
             };
             _dbConfig = new AmazonDynamoDBConfig();
             _dbclient = new AmazonDynamoDBClient(_dbConfig);
+            _pocoDynamo = new PocoDynamo(_dbclient);
+            Converters = new DynamoConverters();
         }
 
         public string AddNewToken(AuthenticationUser user)
         {
             using(var context = new DynamoDBContext(_contextConfig))
             {
-                Token token = new Token() { CreatedTime = DateTime.Now, IsValid = true, TokenId = TokenGenerator(), Email = user.Username };
+                Token token = new Token() { CreatedTime = DateTime.Now, IsValid = true, TokenId = TokenGenerator(), Email = user.Email };
                 try
                 {
                     context.Save(token);
@@ -45,14 +51,15 @@ namespace Dal.TokenRepositories
             }
         }
 
-        public async Task<string> ChangeUserToken(User user)
+        public string ChangeUserToken(User user)
         {
-            using (var context = new DynamoDBContext(_contextConfig))
-            {
-                var lastToken = await context.LoadAsync<Token>(user.TokenId);
-                lastToken.IsValid = false;
-                context.
-            }
+            var token = _pocoDynamo.FromQuery<Token>(x => x.Email == user.Email && x.IsValid == true)
+                                    .Exec()
+                                    .FirstOrDefault()
+                                    .IsValid = false;
+            Token newToken = new Token() { CreatedTime = DateTime.Now, Email = user.Email, IsValid = true, TokenId = TokenGenerator() };
+            _pocoDynamo.PutItem<Token>(newToken);
+            return newToken.TokenId;
         }
 
         private string TokenGenerator()

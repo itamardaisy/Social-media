@@ -13,16 +13,12 @@ namespace BL
     {
         private IUserRepository _userRepository;
 
-        public LoginService()
-        {
-        }
-
         public LoginService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public AuthenticationUser Login(string email, string password)
+        public User Login(string email, string password)
         {
             try
             {
