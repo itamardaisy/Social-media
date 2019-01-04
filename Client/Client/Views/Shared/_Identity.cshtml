@@ -1,6 +1,5 @@
 ﻿@model Client.Models.UserIdentity
 
-
 <form>
     <div class="form-group">
         <label for="FullName">Full Name</label>
@@ -20,9 +19,8 @@
     </div>
 </form>
 
-<button class="btn">@Html.ActionLink("Edit", "Info", "Identity", routeValues: new
-               {
-                   userIdentity = Model,
-               },
-               htmlAttributes: null)
+<button class="btn">
+    @Html.ActionLink("Edit", "Info", "Identity",
+    routeValues: new {email = Model.Email},
+    htmlAttributes: null)
 </button>

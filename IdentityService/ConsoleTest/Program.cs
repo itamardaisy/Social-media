@@ -27,7 +27,7 @@ namespace ConsoleTest
 
             //userLibrary.AddUserIdentity(userTest);
             //var u = userLibrary.GetUserIdentity("it@g.com");
-            userLibrary.ModifyUserIdentity(userTest);
+            //userLibrary.ModifyUserIdentity(userTest);
             //Console.WriteLine(u);
 
             string url = "http://localhost:39265/";

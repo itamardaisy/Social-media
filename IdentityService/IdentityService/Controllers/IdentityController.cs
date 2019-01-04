@@ -42,6 +42,9 @@ namespace IdentityService.Controllers
             }
         }
 
+        /// <summary>
+        /// Update user identity in dynamodb using http call from the client
+        /// </summary>
         [HttpPost]
         [Route("UpdateUserIdentity")]
         public HttpResponseMessage UpdateUserIdentity(UserIdentity userIdentity)

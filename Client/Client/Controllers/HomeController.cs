@@ -14,17 +14,27 @@ namespace Client.Controllers
     {
         HttpClient _client;
 
+        /// <summary>
+        /// ctor for home controller, init the http client
+        /// </summary>
         public HomeController()
         {
             _client = new HttpClient();
             _client.BaseAddress = new Uri("http://localhost:39265/");
         }
 
+        /// <summary>
+        /// go to index view
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// go to main page with connected user by email
+        /// </summary>
         public ActionResult Main(string email)
         {
             var result = _client.GetAsync($"api/Identity/GetUserIdentity?email={email}").Result;
@@ -43,16 +53,25 @@ namespace Client.Controllers
             return View(viewModel);
         }       
 
+        /// <summary>
+        /// go to login page
+        /// </summary>
         public ActionResult Login()
         {
             return View();
         }
 
+        /// <summary>
+        /// go to register page
+        /// </summary>
         public ActionResult Register()
         {
             return View();
         }
 
+        /// <summary>
+        /// go to about page
+        /// </summary>
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -60,6 +79,9 @@ namespace Client.Controllers
             return View();
         }
 
+        /// <summary>
+        /// go to contact page
+        /// </summary>
         public ActionResult Contact()
         {
             return View();
