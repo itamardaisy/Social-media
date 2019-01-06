@@ -1,1 +1,5 @@
 .vs/
+/AuthenticationService/AuthenticationService/bin/roslyn
+/AuthenticationService/AuthenticationService/bin
+/AuthenticationService/AuthenticationService/obj/Debug
+/AuthenticationService
