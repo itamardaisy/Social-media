@@ -19,7 +19,6 @@ namespace Dal.TokenRepositories
         private readonly AmazonDynamoDBClient _dbclient;
         private readonly AmazonDynamoDBConfig _dbConfig;
         private readonly PocoDynamo _pocoDynamo;
-        private readonly DynamoConverters Converters;
 
         public TokenRipository()
         {
@@ -31,7 +30,8 @@ namespace Dal.TokenRepositories
             _dbConfig = new AmazonDynamoDBConfig();
             _dbclient = new AmazonDynamoDBClient(_dbConfig);
             _pocoDynamo = new PocoDynamo(_dbclient);
-            Converters = new DynamoConverters();
+            _pocoDynamo.RegisterTable<Token>();
+            _pocoDynamo.InitSchema();
         }
 
         public string AddNewToken(AuthenticationUser user)
@@ -53,10 +53,9 @@ namespace Dal.TokenRepositories
 
         public string ChangeUserToken(User user)
         {
-            var token = _pocoDynamo.FromQuery<Token>(x => x.Email == user.Email && x.IsValid == true)
-                                    .Exec()
-                                    .FirstOrDefault()
-                                    .IsValid = false;
+            DateTime time = DateTime.Now.AddMinutes(-15);
+            var token = _pocoDynamo.FromQuery<Token>(x => x.TokenId == user.TokenId && x.CreatedTime >= time).Exec()
+                                    
             Token newToken = new Token() { CreatedTime = DateTime.Now, Email = user.Email, IsValid = true, TokenId = TokenGenerator() };
             _pocoDynamo.PutItem<Token>(newToken);
             return newToken.TokenId;

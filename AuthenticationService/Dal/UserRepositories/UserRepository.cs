@@ -65,6 +65,12 @@ namespace Dal.UserRepositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public async Task<User> Login(string email, string password)
         {
             using (var context = new DynamoDBContext(_contextConfig))
@@ -76,7 +82,7 @@ namespace Dal.UserRepositories
                         string token = _tokenRipository.AddNewToken(userCheck);
                         return new User(){
                             Email = userCheck.Email,
-                            IsAvilable = true,
+                            IsAvailable = true,
                             Password = userCheck.Password,
                             TokenId = token,
                             Username = userCheck.Username

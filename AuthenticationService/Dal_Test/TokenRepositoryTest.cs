@@ -15,5 +15,13 @@ namespace Dal_Test
             TokenRipository tr = new TokenRipository();
             tr.AddNewToken(user);
         }
+
+        [TestMethod]
+        public void ChangeUserToken_ShuoldGenerateNewTokenForTheSameUser()
+        {
+            User user = new User() { Email = "qdjnd@mewmf.fkemf", IsAvailable = true, Password = "ddd", TokenId = "Gl8N2yTU5UCo3f7zW9lutQ==", Username = "ddd" };
+            TokenRipository tr = new TokenRipository();
+            tr.ChangeUserToken(user);
+        }
     }
 }

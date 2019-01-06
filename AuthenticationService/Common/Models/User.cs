@@ -16,6 +16,6 @@ namespace Common.Models
 
         public string TokenId { get; set; }
 
-        public bool IsAvilable { get; set; }
+        public bool IsAvailable { get; set; }
     }
 }
